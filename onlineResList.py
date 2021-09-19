@@ -12,7 +12,13 @@
 
 import os, sys, pyperclip, requests, bs4
 
+def writeToFile(address, entry):
+	with open(address, 'a') as file:
+		file.write(entry)
+		file.close()
+
 # Getting the link, accsessing the web-page and getting the title.
+# TODO: Make links not mandatory so help keyword can work.
 link = pyperclip.paste()
 try:
 	res = requests.get(link)
@@ -31,15 +37,33 @@ else:
 	entry = f'{title}\n{link}\n\n\n'
 
 # Creating an entry.
-if sys.argv[1] == 'python':
-	with open('/Users/mladenimac/Py/python_resources.txt', 'a') as file:
-		file.write(entry)
-		file.close()
-	print('\nEntry made to python resouce file.\n')
-elif sys.argv[1] == 'java':
-	with open('/Users/mladenimac/Java/Java_resources.txt', 'a') as file:
-		file.write(entry)
-		file.close()
-	print('\nEntry made to java resource file.\n')
+adressDict = {'python':'/Users/mladenimac/python_resources.txt', 'java': '/Users/mladenimac/Java_resources.txt', 'qa': '/Users/mladenimac/qa_resources.txt'}
+# addressPy='/Users/mladenimac/python_resources.txt' # Dodaj Py folder
+# addressJava = '/Users/mladenimac/Java_resources.txt' # Dodaj Java folder
+# addressQa = '/Users/mladenimac/qa_resources.txt' # Dodaj itBootcamp
+if sys.argv[1].lower() == 'python':
+	writeToFile(adressDict['python'], entry)
+	print('\n\tEntry made to python resouce file.\n')
+
+elif sys.argv[1].lower() == 'java':
+	writeToFile(adressDict['java'], entry)
+	print('\n\tEntry made to java resource file.\n')
+
+elif sys.argv[1].lower() == 'qa':
+	writeToFile(adressDict['qa'], entry)
+	print('\n\tEntry made to qa resource file.\n')
+
+elif sys.argv[1].lower() == 'pythonandjava':
+	writeToFile(adressDict['python'], entry)
+	writeToFile(adressDict['java'], entry)
+	print('\n\tEntry made to python and java resource files.\n')
+
+elif sys.argv[1].lower() == '--help':
+	print('\n\tSyntax: onlineResList.py [resource] [optional comment string with quotes]')
+	print(f'\tKeywords are not case sensitive, there are {len(adressDict)} keywords for active documents and one special keyword. ')
+	print('\tActive documents: ')
+	for key in adressDict:
+		print(f'\tKeyword: {key} - Address: {adressDict[key]}')
+	print('\tSpecial keyword: pythonAndJava writes an entry to both python and java docs.')
 else:
-	print('Cant determine the  document to edit./nType "java" or "python" keywords, without quotation marks.')
+	print('\tCant determine the  document to edit.\n\tType --help for list of available keywords.')
