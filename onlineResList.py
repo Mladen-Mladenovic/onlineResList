@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
 # onlineResList - Makes an entry to the .txt doc.
-#	takes link from the clipboard, <title> from the web page and comment from the clipboard.
+#	Takes link from the clipboard, <title> from the web page and comment from the clipboard.
+#	Syntax onlineResList.py [keyword] [comment]
+# Depending on the keyword saves entry to the document in predefined directory, under the name formated as 'keyword_resources.txt'
 #
-# Depending on the keyword 'java' or 'python'saves document in predefined directory, under the name 'python_resources.txt' or 'java_resources.txt'
 # Dodaje na spisak resursa za ucenje pajtona linkove sa naslovima
 # Link ucitava iz klipborda, sa sajda skida <title>, a komentar uzima sa terminala
+# U zavisnosti od ključne reči čuva unos u dokumentu koji se nalazi u unapred zadatom direktorijumu pod imenom u formatu 'keyword_resources.txt'
 
 
 # Syntax: python onlineResList.py java TextOfTheNote
@@ -16,7 +18,7 @@ def writeToFile(address, entry):
 	with open(address, 'a') as file:
 		file.write(entry)
 		file.close()
-
+# TODO: Create a class so new keywords can be made through the script
 # Getting the link, accsessing the web-page and getting the title.
 # TODO: Make links not mandatory so help keyword can work.
 link = pyperclip.paste()
