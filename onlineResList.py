@@ -39,10 +39,8 @@ else:
 	entry = f'{title}\n{link}\n\n\n'
 
 # Creating an entry.
-adressDict = {'python':'/Users/mladenimac/python_resources.txt', 'java': '/Users/mladenimac/Java_resources.txt', 'qa': '/Users/mladenimac/qa_resources.txt'}
-# addressPy='/Users/mladenimac/python_resources.txt' # Dodaj Py folder
-# addressJava = '/Users/mladenimac/Java_resources.txt' # Dodaj Java folder
-# addressQa = '/Users/mladenimac/qa_resources.txt' # Dodaj itBootcamp
+adressDict = {'python':'/Users/mladenimac/Py/python_resources.txt', 'java': '/Users/mladenimac/Java/Java_resources.txt', 'qa': '/Users/mladenimac/itBootcamp/qa_resources.txt'}
+
 if sys.argv[1].lower() == 'python':
 	writeToFile(adressDict['python'], entry)
 	print('\n\tEntry made to python resouce file.\n')
